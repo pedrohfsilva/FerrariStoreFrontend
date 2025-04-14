@@ -1,7 +1,7 @@
 # Ferrari Store
 
 <p align="center">
-  <img width="200" src="https://i.pinimg.com/736x/4c/ab/f1/4cabf11ca2754891d4d9d20326eca835.jpg">
+  <img width="200" src="https://static.vecteezy.com/ti/vetor-gratis/p1/20500228-ferrari-marca-logotipo-carro-simbolo-preto-projeto-italiano-automovel-ilustracao-gratis-vetor.jpg">
 </p>
 
 ### Website
