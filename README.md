@@ -17,40 +17,42 @@
 
 ### Project Description
 
+The Ferrari Store is an online store for selling collectible items, offering a curated selection of miniature cars and helmets. A must-visit for motorsport enthusiasts, it offers high-quality replicas of Ferrari vehicles and iconic racing helmets, perfect for collectors and fans. As a unique feature, you can even listen to the engine sounds of our car miniatures. Check out the initial website design here: [link].
+
 Describe how your project implements the functionality in the requirements. Diagrams can help a lot here.
 
-The Ferrari Store is an online store for selling collectible items, offering a curated selection of miniature cars and helmets. A must-visit for motorsport enthusiasts, it provides high-quality replicas of Ferrari cars and iconic racing helmets, perfect for collectors and fans alike.
 
 ### Requirements
 
-The requirements are given in the assignment, but you have to add any new requirements needed by your particular store implementation.
+Our website supports both customers and administrators, with user and product registration. Customers can select products, choose quantities, and add them to a cart for purchase with a credit card. As a unique feature, we included a system to press a button in the product page and play engine sounds for the car miniatures in our store. All pages are fully responsive.
 
-### Comments about the code
 
-Any comment you may want to add to help understand your code. This is good programming practice.
+### Navigation Diagram
 
-### Test Plan
 
-Text describing the tests that will be performed. If an automatic test tool/framework is used (ex: Selenium, JUnit, Spock), the code for the tests can be used
-
-### Test Results
-
-Text describing the test results. If an automatic test tool/framework is used, its output can be used.
-For instance, for testing, you may say I intend to use the postman to test the back end, etc.
-
-### Build Procedures
-
-A step-by-step guide to run your code. You should start telling how to install whatever software you need, then how to download/build your program, and finally how to set up the environment to run it. Imagine that someone installing will just follow these commands (nothing more).
-
-### Problems
-List any major problems you had.
-
-### Comments
-Any comments you wish to add.
 
 ### Mockup images (Milestone 1)
 
 *Colocar as imagens do mockup
+
+</br>
+
+### Comments about the code
+
+
+
+### Test Plan
+
+
+### Test Results
+
+
+### Build Procedures
+
+
+### Problems
+
+### Comments
 
 
 
