@@ -30,6 +30,25 @@ Our website supports both customers and administrators, with user and product re
 ### Navigation Diagram
 
 
+```mermaid
+  graph TD;
+      Home---LogIn
+      Home---Cars
+      Home---Formula1
+      Home---Helmets
+      Home---Produto
+      Home---Carrinho
+      Helmets---Produto
+      Formula1---Produto
+      Cars---Produto
+      Produto---LogIn
+      Produto---Carrinho
+      LogIn---Admin
+      Admin---AdminDashboard
+      LogIn---Usuário
+      Usuário---Carrinho
+      
+```
 
 ### Mockup images (Milestone 1)
 
