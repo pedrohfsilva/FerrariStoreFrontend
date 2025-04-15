@@ -32,7 +32,7 @@ Our website supports both customers and administrators, with user and product re
 
 ```mermaid
   graph TD;
-      Home---LogIn
+      Home---LogIn[<a href='https://store.ferrari.com/en-it/collectibles/replica-and-scale-models/f1-items/'>LogIn</a>];
       Home---Cars
       Home---Formula1
       Home---Helmets
