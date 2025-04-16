@@ -1,7 +1,7 @@
 # Ferrari Store
 
 <p align="center">
-  <img width="200" src="ferrari.jpg">
+  <img width="200" src="https://github.com/LeticiaBN/FerrariStore/blob/main/initial-design/img/logo.png?raw=true">
 </p>
 
 ### Authors
