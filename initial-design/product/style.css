@@ -103,8 +103,18 @@ a {
 }
 
 .icon {
-  width: 16px;
-  height: 16px;
+  width: 40px;
+  height: 40px;
+}
+
+.icon-arrow {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-sound {
+  width: 15px;
+  height: 15px;
 }
 
 /* Main content */
