@@ -52,7 +52,7 @@ Our website supports both customers and administrators, with user and product re
 
 ### Mockup images (Milestone 1)
 
-The Mockup images for this site can be found <a href='https://github.com/LeticiaBN/FerrariStore/tree/596a93f7db89f1ddb446b2b4f2ebcaa334f32165/mockups'>here</a>;
+The Mockup images for this site can be found <a href='https://github.com/LeticiaBN/FerrariStore/tree/596a93f7db89f1ddb446b2b4f2ebcaa334f32165/mockups'>here</a>
 
 </br>
 
