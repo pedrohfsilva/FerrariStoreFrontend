@@ -32,19 +32,19 @@ Our website supports both customers and administrators, with user and product re
 
 ```mermaid
   graph TD;
-      Home---LogIn[<a href='https://store.ferrari.com/en-it/collectibles/replica-and-scale-models/f1-items/'>LogIn</a>];
-      Home---Cars
-      Home---Formula1
-      Home---Helmets
-      Home---Produto
-      Home---Carrinho
+      Home[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/homepage.png?raw=true'>Home</a>]---LogIn[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/login.png?raw=true'>LogIn</a>];
+      Home---Cars[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/cars.png?raw=true'>Cars</a>];
+      Home---Formula1[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/formula1.png?raw=true'>Formula1</a>];
+      Home---Helmets[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/helmets.png?raw=true'>Helmets</a>];
+      Home---Produto[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/product.png?raw=true'>Produto</a>];
+      Home---Carrinho[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/cart.png?raw=true'>Cart</a>];
       Helmets---Produto
       Formula1---Produto
       Cars---Produto
       Produto---LogIn
       Produto---Carrinho
       LogIn---Admin
-      Admin---AdminDashboard
+      Admin---AdminDashboard[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/admin.png?raw=true'>AdminDashboard</a>];
       LogIn---Usuário
       Usuário---Carrinho
       
