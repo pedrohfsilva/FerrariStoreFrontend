@@ -49,9 +49,10 @@ All website pages feature **fully responsive design**, ensuring an optimized use
       Cars---Produto
       Produto---LogIn
       Produto---Carrinho
-      LogIn---Admin[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/admin.png?raw=true'>Admin</a>];
+      LogIn---Admin
       Admin---AdminDashboard[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/admin.png?raw=true'>AdminDashboard</a>];
-      LogIn---Usuário[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/profile.png?raw=true'>Usuário</a>];
+      LogIn---Usuário
+      Usuário---Profile[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/profile.png?raw=true'>Profile</a>];
       Usuário---Carrinho
       
 ```
