@@ -28,7 +28,7 @@ Our website provides comprehensive functionality for both customers and administ
 
 **For customers**, we provide a full-featured shopping system where users can create personal accounts, browse our product catalog, select desired quantities, and add items to their cart. The checkout process includes credit card payments and delivery address management. Users can also update their profile information at any time.
 
-As a **unique selling point**, we've implemented an interactive feature that allows customers to hear authentic engine sounds for each car miniature directly on the product page through a dedicated button. This special functionality was designed to provide automotive enthusiasts with a more immersive experience.
+As the specific functionality, we've implemented an interactive feature that allows customers to hear authentic engine sounds for each car miniature directly on the product page through a dedicated button.
 
 All website pages feature **fully responsive design**, ensuring an optimized user experience across all devices from desktops to smartphones.
 
