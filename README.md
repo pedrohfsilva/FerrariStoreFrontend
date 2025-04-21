@@ -17,14 +17,28 @@
 
 ### Project Description
 
-The Ferrari Store is an online store for selling collectible items, offering a curated selection of miniature cars and helmets. A must-visit for motorsport enthusiasts, it offers high-quality replicas of Ferrari vehicles and iconic racing helmets, perfect for collectors and fans. As a unique feature, you can even listen to the engine sounds of our car miniatures. Check out the initial website design here: [link].
-
-Describe how your project implements the functionality in the requirements. Diagrams can help a lot here.
+The Ferrari Store is an online store for selling collectible items, offering a curated selection of miniature cars and helmets. A must-visit for motorsport enthusiasts, it offers high-quality replicas of Ferrari vehicles and iconic racing helmets, perfect for collectors and fans. As a unique feature, you can even listen to the engine sounds of our car miniatures.
 
 
 ### Requirements
 
-Our website supports both customers and administrators, with user and product registration. Customers can select products, choose quantities, and add them to a cart for purchase with a credit card. As a unique feature, we included a system to press a button in the product page and play engine sounds for the car miniatures in our store. All pages are fully responsive.
+# Platform Overview  
+
+Our platform supports **customers** and **administrators** with tailored functionalities.  
+
+## Administrator Features  
+- **Inventory Management**: Adjust stock levels, add, or remove items.  
+- **Account Control**: Create and manage administrator accounts.  
+
+## Customer Features  
+- **E-Commerce**: Browse products, select quantities, and checkout via credit card.  
+- **Profile Management**: Update personal details and save delivery addresses.  
+
+## Unique Feature  
+**Interactive Engine Sounds**: A dedicated button on product pages plays realistic engine sounds for car miniatures—enhancing the shopping experience for enthusiasts.  
+
+## Technical Note  
+**Fully Responsive Design**: Optimized for seamless use across all devices.  
 
 
 ### Navigation Diagram
