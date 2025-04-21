@@ -22,23 +22,15 @@ The Ferrari Store is an online store for selling collectible items, offering a c
 
 ### Requirements
 
-# Platform Overview  
+Our website provides comprehensive functionality for both customers and administrators.
 
-Our platform supports **customers** and **administrators** with tailored functionalities.  
+**For administrators**, the system offers complete inventory management capabilities, including stock quantity adjustments, product additions and removals, as well as the ability to create new administrative users. All management tools are accessible through an intuitive dashboard.
 
-## Administrator Features  
-- **Inventory Management**: Adjust stock levels, add, or remove items.  
-- **Account Control**: Create and manage administrator accounts.  
+**For customers**, we provide a full-featured shopping system where users can create personal accounts, browse our product catalog, select desired quantities, and add items to their cart. The checkout process includes credit card payments and delivery address management. Users can also update their profile information at any time.
 
-## Customer Features  
-- **E-Commerce**: Browse products, select quantities, and checkout via credit card.  
-- **Profile Management**: Update personal details and save delivery addresses.  
+As a **unique selling point**, we've implemented an interactive feature that allows customers to hear authentic engine sounds for each car miniature directly on the product page through a dedicated button. This special functionality was designed to provide automotive enthusiasts with a more immersive experience.
 
-## Unique Feature  
-**Interactive Engine Sounds**: A dedicated button on product pages plays realistic engine sounds for car miniatures—enhancing the shopping experience for enthusiasts.  
-
-## Technical Note  
-**Fully Responsive Design**: Optimized for seamless use across all devices.  
+All website pages feature **fully responsive design**, ensuring an optimized user experience across all devices from desktops to smartphones.
 
 
 ### Navigation Diagram
