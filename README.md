@@ -20,6 +20,13 @@
 The Ferrari Store is an online store for selling collectible items, offering a curated selection of miniature cars and helmets. A must-visit for motorsport enthusiasts, it offers high-quality replicas of Ferrari vehicles and iconic racing helmets, perfect for collectors and fans. As a unique feature, you can even listen to the engine sounds of our car miniatures.
 
 ### Build Procedures
+
+This project is divided into two parts:
+
+* `frontend` (Next.js)
+* `backend` (Node.js)
+
+Follow the steps below to run the application locally.
 #### 1. Open Two Terminals and Navigate to the Project Folders
 
 In the root directory of the project, open **two separate terminals**:
@@ -100,7 +107,7 @@ npm run dev
 ---
 
 
-### For reviwers 
+# For reviwers 
 
 You can create your own account to thest the user features.
 
@@ -109,20 +116,7 @@ Use the following admin credentials to test admin features:
 - Login: admin@gmail.com
 - Password: admin123
 
-### Requirements
-
-Our website provides comprehensive functionality for both customers and administrators.
-
-**For administrators**, the system offers complete inventory management capabilities, including stock quantity adjustments, product additions and removals, as well as the ability to create new administrative users. All management tools are accessible through an intuitive dashboard.
-
-**For customers**, we provide a full-featured shopping system where users can create personal accounts, browse our product catalog, select desired quantities, and add items to their cart. The checkout process includes credit card payments and delivery address management. Users can also update their profile information at any time.
-
-As the specific functionality, we've implemented an interactive feature that allows customers to hear authentic engine sounds for each car miniature directly on the product page through a dedicated button.
-
-All website pages feature **fully responsive design**, ensuring an optimized user experience across all devices from desktops to smartphones.
-
-
-### Navigation Diagram
+# Navigation Diagram
 
 
 ```mermaid
@@ -150,7 +144,16 @@ All website pages feature **fully responsive design**, ensuring an optimized use
 
 The Mockup images for this site can be found <a href='https://github.com/LeticiaBN/FerrariStore/tree/596a93f7db89f1ddb446b2b4f2ebcaa334f32165/mockups'>here</a>
 
-</br>
+### The requirements met by the project
+Our website provides comprehensive functionality for both customers and administrators.
+
+**For administrators**, the system offers complete inventory management capabilities, including stock quantity adjustments, product additions and removals, as well as the ability to create new administrative users. All management tools are accessible through an intuitive dashboard.
+
+**For customers**, we provide a full-featured shopping system where users can create personal accounts, browse our product catalog, select desired quantities, and add items to their cart. The checkout process includes credit card payments and delivery address management. Users can also update their profile information at any time.
+
+As the specific functionality, we've implemented an interactive feature that allows customers to hear authentic engine sounds for each car miniature directly on the product page through a dedicated button.
+
+All website pages feature **fully responsive design**, ensuring an optimized user experience across all devices from desktops to smartphones.
 
 ### Comments about the code
 
@@ -160,16 +163,6 @@ The Mockup images for this site can be found <a href='https://github.com/Leticia
 
 
 ### Test Results
-
-
-### Build Procedures
-
-This project is divided into two parts:
-
-* `frontend` (Next.js)
-* `backend` (Node.js)
-
-Follow the steps below to run the application locally.
 
 ### Problems
 
