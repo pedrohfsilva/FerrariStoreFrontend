@@ -19,77 +19,7 @@
 
 The Ferrari Store is an online store for selling collectible items, offering a curated selection of miniature cars and helmets. A must-visit for motorsport enthusiasts, it offers high-quality replicas of Ferrari vehicles and iconic racing helmets, perfect for collectors and fans. As a unique feature, you can even listen to the engine sounds of our car miniatures.
 
-### Admin 
-
-Use the following admin credentials to test admin features:
-
-- Login: admin@gmail.com
-- Password: admin123
-
-### Requirements
-
-Our website provides comprehensive functionality for both customers and administrators.
-
-**For administrators**, the system offers complete inventory management capabilities, including stock quantity adjustments, product additions and removals, as well as the ability to create new administrative users. All management tools are accessible through an intuitive dashboard.
-
-**For customers**, we provide a full-featured shopping system where users can create personal accounts, browse our product catalog, select desired quantities, and add items to their cart. The checkout process includes credit card payments and delivery address management. Users can also update their profile information at any time.
-
-As the specific functionality, we've implemented an interactive feature that allows customers to hear authentic engine sounds for each car miniature directly on the product page through a dedicated button.
-
-All website pages feature **fully responsive design**, ensuring an optimized user experience across all devices from desktops to smartphones.
-
-
-### Navigation Diagram
-
-
-```mermaid
-  graph TD;
-      Home[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/homepage.png?raw=true'>Home</a>]---LogIn[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/login.png?raw=true'>LogIn</a>];
-      Home---Cars[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/cars.png?raw=true'>Cars</a>];
-      Home---Formula1[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/formula1.png?raw=true'>Formula1</a>];
-      Home---Helmets[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/helmets.png?raw=true'>Helmets</a>];
-      Home---Produto[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/product.png?raw=true'>Produto</a>];
-      Home---Carrinho[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/cart.png?raw=true'>Cart</a>];
-      Helmets---Produto
-      Formula1---Produto
-      Cars---Produto
-      Produto---LogIn
-      Produto---Carrinho
-      LogIn---Admin
-      Admin---AdminDashboard[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/admin.png?raw=true'>AdminDashboard</a>];
-      LogIn---Usuário
-      Usuário---Profile[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/profile.png?raw=true'>Profile</a>];
-      Usuário---Carrinho
-      
-```
-
-### Mockup images (Milestone 1)
-
-The Mockup images for this site can be found <a href='https://github.com/LeticiaBN/FerrariStore/tree/596a93f7db89f1ddb446b2b4f2ebcaa334f32165/mockups'>here</a>
-
-</br>
-
-### Comments about the code
-
-
-
-### Test Plan
-
-
-### Test Results
-
-
 ### Build Procedures
-
-This project is divided into two parts:
-
-* `frontend` (Next.js)
-* `backend` (Node.js)
-
-Follow the steps below to run the application locally.
-
-### Getting Started
-
 #### 1. Open Two Terminals and Navigate to the Project Folders
 
 In the root directory of the project, open **two separate terminals**:
@@ -168,6 +98,78 @@ npm run dev
 * The **backend** will be running at: `http://localhost:5000`
 
 ---
+
+
+### For reviwers 
+
+You can create your own account to thest the user features.
+
+Use the following admin credentials to test admin features:
+
+- Login: admin@gmail.com
+- Password: admin123
+
+### Requirements
+
+Our website provides comprehensive functionality for both customers and administrators.
+
+**For administrators**, the system offers complete inventory management capabilities, including stock quantity adjustments, product additions and removals, as well as the ability to create new administrative users. All management tools are accessible through an intuitive dashboard.
+
+**For customers**, we provide a full-featured shopping system where users can create personal accounts, browse our product catalog, select desired quantities, and add items to their cart. The checkout process includes credit card payments and delivery address management. Users can also update their profile information at any time.
+
+As the specific functionality, we've implemented an interactive feature that allows customers to hear authentic engine sounds for each car miniature directly on the product page through a dedicated button.
+
+All website pages feature **fully responsive design**, ensuring an optimized user experience across all devices from desktops to smartphones.
+
+
+### Navigation Diagram
+
+
+```mermaid
+  graph TD;
+      Home[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/homepage.png?raw=true'>Home</a>]---LogIn[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/login.png?raw=true'>LogIn</a>];
+      Home---Cars[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/cars.png?raw=true'>Cars</a>];
+      Home---Formula1[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/formula1.png?raw=true'>Formula1</a>];
+      Home---Helmets[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/helmets.png?raw=true'>Helmets</a>];
+      Home---Produto[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/product.png?raw=true'>Produto</a>];
+      Home---Carrinho[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/cart.png?raw=true'>Cart</a>];
+      Helmets---Produto
+      Formula1---Produto
+      Cars---Produto
+      Produto---LogIn
+      Produto---Carrinho
+      LogIn---Admin
+      Admin---AdminDashboard[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/admin.png?raw=true'>AdminDashboard</a>];
+      LogIn---Usuário
+      Usuário---Profile[<a href='https://github.com/LeticiaBN/FerrariStore/blob/main/mockups/profile.png?raw=true'>Profile</a>];
+      Usuário---Carrinho
+      
+```
+
+### Mockup images (Milestone 1)
+
+The Mockup images for this site can be found <a href='https://github.com/LeticiaBN/FerrariStore/tree/596a93f7db89f1ddb446b2b4f2ebcaa334f32165/mockups'>here</a>
+
+</br>
+
+### Comments about the code
+
+
+
+### Test Plan
+
+
+### Test Results
+
+
+### Build Procedures
+
+This project is divided into two parts:
+
+* `frontend` (Next.js)
+* `backend` (Node.js)
+
+Follow the steps below to run the application locally.
 
 ### Problems
 
