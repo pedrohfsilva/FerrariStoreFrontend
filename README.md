@@ -34,13 +34,13 @@ In the root directory of the project, open **two separate terminals**:
 * In Terminal 1:
 
   ```bash
-  cd FerrariStore/frontend
+  cd FerrariStore/final-version/frontend
   ```
 
 * In Terminal 2:
 
   ```bash
-  cd FerrariStore/backend
+  cd FerrariStore/final-version/backend
   ```
 
 ---
@@ -50,7 +50,7 @@ In the root directory of the project, open **two separate terminals**:
 In **both** terminals, run the following command:
 
 ```bash
-npm install --force
+npm install
 ```
 
 This will install all the required dependencies for both frontend and backend.
