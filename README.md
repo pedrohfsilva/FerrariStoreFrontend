@@ -171,5 +171,5 @@ We tested adding products to the cart in several ways, including entering the pr
 #### The group's functionality
 We tested both the addition of audio files and their playback by the user. Both cases worked perfectly. When a user listens to the audio, they do not need to wait for it to finish, as they are able to pause the audio in the middle.
 
-### Comments
+# Comments
 For convenience, we implemented the backend during the second milestone, so it wasn't necessary to use the suggested mockup tools.
