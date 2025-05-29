@@ -65,20 +65,20 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
             <Button variant="ghost" className="w-full justify-start" asChild>
               <Link href="/admin/products">
                 <List className="mr-2 h-4 w-4" />
-                All Products
+                Todos Produtos
               </Link>
             </Button>
             <Button variant="ghost" className="w-full justify-start" asChild>
               <Link href="/admin/products/add">
                 <Plus className="mr-2 h-4 w-4" />
-                Add Product
+                Adicionar Produto
               </Link>
             </Button>
             <h3 className="mb-2 mt-4 px-2 text-xs font-semibold uppercase text-gray-500">Users</h3>
             <Button variant="ghost" className="w-full justify-start" asChild>
               <Link href="/admin/users">
                 <Users className="mr-2 h-4 w-4" />
-                Manage Users
+                Gerenciar Usuários
               </Link>
             </Button>
           </div>
@@ -90,7 +90,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
             >
               <Link href="/">
                 <Home className="mr-2 h-4 w-4" />
-                Back to Store
+                Voltar para a Loja
               </Link>
             </Button>
           </div>
