@@ -86,10 +86,12 @@ Replace `your_mongodb_connection_string_here` with the actual MongoDB URI you'll
 1. Go to [MongoDB Atlas](https://www.mongodb.com/products/platform/atlas-database).
 2. Create an account or log in.
 3. Create a new **cluster** (or use an existing one).
-4. Click **"Connect"** to get your **MongoDB connection string (URI)**.
-5. Copy the URI and paste it in the `.env` file inside the `backend` folder where it says `your_mongodb_connection_string_here`.
-6. Go to **Network Access** in MongoDB Atlas.
-7. Add your **current IP address** to the list of allowed IPs.
+4. Create a database user.
+5. Click **"Connect"** to connect to application and get your **MongoDB connection string (URI)**.
+6. Copy the URI and paste it in the `.env` file inside the `backend` folder where it says `your_mongodb_connection_string_here`.
+7. Click in **"Done"**.
+8. Go to **Network Access** in MongoDB Atlas.
+9. Add your **current IP address** to the list of allowed IPs.
 
 ---
 
