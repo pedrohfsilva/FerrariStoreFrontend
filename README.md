@@ -34,13 +34,13 @@ In the root directory of the project, open **two separate terminals**:
 * In Terminal 1:
 
   ```bash
-  cd FerrariStore/final-version/frontend
+  cd final-version/frontend
   ```
 
 * In Terminal 2:
 
   ```bash
-  cd FerrariStore/final-version/backend
+  cd final-version/backend
   ```
 
 ---
@@ -86,10 +86,12 @@ Replace `your_mongodb_connection_string_here` with the actual MongoDB URI you'll
 1. Go to [MongoDB Atlas](https://www.mongodb.com/products/platform/atlas-database).
 2. Create an account or log in.
 3. Create a new **cluster** (or use an existing one).
-4. Click **"Connect"** to get your **MongoDB connection string (URI)**.
-5. Copy the URI and paste it in the `.env` file inside the `backend` folder where it says `your_mongodb_connection_string_here`.
-6. Go to **Network Access** in MongoDB Atlas.
-7. Add your **current IP address** to the list of allowed IPs.
+4. Create a database user.
+5. Click **"Connect"** to connect to application and get your **MongoDB connection string (URI)**.
+6. Copy the URI and paste it in the `.env` file inside the `backend` folder where it says `your_mongodb_connection_string_here`.
+7. Click in **"Done"**.
+8. Go to **Network Access** in MongoDB Atlas.
+9. Add your **current IP address** to the list of allowed IPs.
 
 ---
 
@@ -109,12 +111,33 @@ npm run dev
 
 # For reviwers 
 
-You can create your own account to thest the user features.
+You can create your own account to test the user features.
 
-Use the following admin credentials to test admin features:
+## Admin Access Setup
 
-- Login: admin@gmail.com
-- Password: admin123
+To test the **admin features** of the platform, follow the steps below:
+
+1. **Create an account** and **log in** to the platform.
+
+2. Go to [MongoDB Atlas](https://www.mongodb.com/products/platform/atlas-database).
+
+3. In the MongoDB Atlas dashboard:
+
+   * Click on **"Clusters"**.
+   * Click on **"Browse Collections"**.
+
+4. In the **`test`** database:
+
+   * Open the **`users`** collection.
+   * Find your user document.
+   * Change the value of the `admin` attribute to `true`.
+
+5. Return to the platform:
+
+   * Click the **Logout** button.
+   * Log in again.
+
+Now your user has **admin privileges**, and you can access the **admin page**.
 
 # Navigation Diagram
 
