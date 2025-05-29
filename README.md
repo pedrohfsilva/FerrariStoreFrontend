@@ -155,9 +155,9 @@ As the specific functionality, we've implemented an interactive feature that all
 
 All website pages feature **fully responsive design**, ensuring an optimized user experience across all devices from desktops to smartphones.
 
-### Comments about the code
+# Comments about the code
 
-### Test Plan and Test Results
+# Test Plan and Test Results
 
 #### User (Client) login and registration
 The registration process was tested by simulating the completion of all mandatory fields—such as full name, a valid email address, password, and password confirmation—with valid information that complies with the presumably established validation criteria. The registration of new users was successfully completed. The system effectively validated the input data, displayed clear and helpful guidance messages during the process, and the user account was created without any issues. After creation, the user was appropriately redirected, either to the login page for immediate authentication or to a user dashboard.
