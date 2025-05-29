@@ -114,6 +114,24 @@ export const isAuthenticated = (): boolean => {
   return !!localStorage.getItem('token')
 }
 
+export const getCurrentUserId = (): string | null => {
+  if (typeof window === 'undefined') return null
+  
+  // Try to get from userData object first
+  const userData = localStorage.getItem('userData')
+  if (userData) {
+    try {
+      const user = JSON.parse(userData)
+      return user._id || user.id
+    } catch {
+      // If userData is corrupted, fall back to userId
+    }
+  }
+  
+  // Fallback to direct userId for backward compatibility
+  return localStorage.getItem('userId')
+}
+
 export const isAdmin = (): boolean => {
   if (typeof window === 'undefined') return false
   

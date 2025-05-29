@@ -18,12 +18,12 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { useToast } from "@/components/ui/use-toast"
-import { API_URL, authFetchConfig, isAdmin, isAuthenticated } from "@/lib/api"
+import { API_URL, authFetchConfig, isAdmin, isAuthenticated, getCurrentUserId } from "@/lib/api"
 import { IUser } from "@/types/models"
 
 const formatDate = (dateString: string) => {
   const date = new Date(dateString)
-  return new Intl.DateTimeFormat("en-US", {
+  return new Intl.DateTimeFormat("pt-BR", { // Alterado para pt-BR
     year: "numeric",
     month: "short",
     day: "numeric",
@@ -36,13 +36,13 @@ export default function UsersPage() {
   const router = useRouter()
   const { toast } = useToast()
 
-  // Verify authentication and admin permission
+  // Verifica autenticação e permissão de administrador
   useEffect(() => {
     const checkAuth = async () => {
       if (!isAuthenticated()) {
         toast({
-          title: "Authentication required",
-          description: "You must be logged in to access this page",
+          title: "Autenticação necessária",
+          description: "Você deve estar logado para acessar esta página",
           variant: "destructive",
         })
         router.push('/login')
@@ -51,38 +51,38 @@ export default function UsersPage() {
 
       if (!isAdmin()) {
         toast({
-          title: "Access denied",
-          description: "You don't have permission to access this page",
+          title: "Acesso negado",
+          description: "Você não tem permissão para acessar esta página",
           variant: "destructive",
         })
         router.push('/')
         return
       }
 
-      // After verifying auth and permissions, load users
+      // Depois de verificar autenticação e permissões, carrega os usuários
       fetchUsers()
     }
     
     checkAuth()
   }, [router, toast])
 
-  // Load users from API
+  // Carrega usuários da API
   const fetchUsers = async () => {
     try {
       setIsLoading(true)
       const response = await fetch(`${API_URL}/api/users`, authFetchConfig())
       
       if (!response.ok) {
-        throw new Error('Failed to fetch users')
+        throw new Error('Falha ao carregar usuários')
       }
       
       const data = await response.json()
       setUsers(data.users || [])
     } catch (error) {
-      console.error("Error fetching users:", error)
+      console.error("Erro ao carregar usuários:", error)
       toast({
-        title: "Error",
-        description: "Failed to load users. Please try again.",
+        title: "Erro",
+        description: "Falha ao carregar usuários. Por favor, tente novamente.",
         variant: "destructive",
       })
     } finally {
@@ -106,21 +106,21 @@ export default function UsersPage() {
 
       if (!response.ok) {
         const errorData = await response.json()
-        throw new Error(errorData.message || 'Failed to delete user')
+        throw new Error(errorData.message || 'Falha ao deletar usuário')
       }
 
-      // Update the local state after successful deletion
+      // Atualiza o estado local após a exclusão bem-sucedida
       setUsers(users.filter(user => user._id !== userId))
       
       toast({
-        title: "User deleted",
-        description: "The user has been deleted successfully",
+        title: "Usuário deletado",
+        description: "O usuário foi deletado com sucesso",
       })
     } catch (error: any) {
-      console.error("Error deleting user:", error)
+      console.error("Erro ao deletar usuário:", error)
       toast({
-        title: "Error",
-        description: error.message || "Failed to delete user. Please try again.",
+        title: "Erro",
+        description: error.message || "Falha ao deletar usuário. Por favor, tente novamente.",
         variant: "destructive",
       })
     }
@@ -140,18 +140,23 @@ export default function UsersPage() {
   return (
     <div>
       <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-2xl font-bold">User Management</h1>
+        <h1 className="text-2xl font-bold">Gerenciamento de Usuários</h1>
+        {/* Adicionar um botão "Adicionar Usuário" aqui se desejar */}
+        {/* <Button onClick={() => router.push('/admin/users/add')}>
+          <Plus className="mr-2 h-4 w-4" />
+          Adicionar Usuário
+        </Button> */}
       </div>
       <Tabs defaultValue="all">
         <TabsList className="mb-4">
-          <TabsTrigger value="all">All Users ({users.length})</TabsTrigger>
+          <TabsTrigger value="all">Todos os Usuários ({users.length})</TabsTrigger>
           <TabsTrigger value="admins">
             <ShieldCheck className="mr-2 h-4 w-4" />
-            Admins ({adminUsers.length})
+            Administradores ({adminUsers.length})
           </TabsTrigger>
           <TabsTrigger value="users">
             <User className="mr-2 h-4 w-4" />
-            Regular Users ({regularUsers.length})
+            Usuários Comuns ({regularUsers.length})
           </TabsTrigger>
         </TabsList>
         <TabsContent value="all" className="space-y-4">
@@ -163,7 +168,7 @@ export default function UsersPage() {
             </div>
           ) : (
             <div className="py-8 text-center text-gray-500">
-              No users found. Click "Add User" to create a new user.
+              Nenhum usuário encontrado. Clique em "Adicionar Usuário" para criar um novo.
             </div>
           )}
         </TabsContent>
@@ -176,7 +181,7 @@ export default function UsersPage() {
             </div>
           ) : (
             <div className="py-8 text-center text-gray-500">
-              No admin users found.
+              Nenhum usuário administrador encontrado.
             </div>
           )}
         </TabsContent>
@@ -189,7 +194,7 @@ export default function UsersPage() {
             </div>
           ) : (
             <div className="py-8 text-center text-gray-500">
-              No regular users found.
+              Nenhum usuário comum encontrado.
             </div>
           )}
         </TabsContent>
@@ -205,18 +210,21 @@ interface UserCardProps {
 }
 
 function UserCard({ user, onEdit, onDelete }: UserCardProps) {
+  const currentUserId = getCurrentUserId()
+  const isCurrentUser = user._id === currentUserId
+  
   return (
     <Card>
       <CardContent className="p-0">
         <div className="p-4">
           <div className="mb-2 flex items-center justify-between">
             <h3 className="font-semibold">{user.name}</h3>
-            {user.admin ? <Badge className="bg-red-600">Admin</Badge> : <Badge variant="outline">User</Badge>}
+            {user.admin ? <Badge className="bg-red-600">Admin</Badge> : <Badge variant="outline">Usuário</Badge>}
           </div>
           <div className="space-y-1 text-sm">
             <p className="text-gray-600">{user.email}</p>
             <p className="text-gray-600">{user.phone}</p>
-            <p className="text-xs text-gray-500">Created: {formatDate(user.createdAt || '')}</p>
+            <p className="text-xs text-gray-500">Criado em: {formatDate(user.createdAt || '')}</p>
           </div>
         </div>
         <div className="flex border-t">
@@ -226,31 +234,43 @@ function UserCard({ user, onEdit, onDelete }: UserCardProps) {
             onClick={() => onEdit(user._id as string)}
           >
             <Edit className="mr-2 h-4 w-4" />
-            Edit
+            Editar
           </Button>
           <div className="w-px bg-gray-200" />
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button variant="ghost" className="flex-1 rounded-none text-red-600 hover:bg-red-50 hover:text-red-700">
-                <Trash2 className="mr-2 h-4 w-4" />
-                Delete
-              </Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Delete User</AlertDialogTitle>
-                <AlertDialogDescription>
-                  Are you sure you want to delete {user.name}? This action cannot be undone.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction className="bg-red-600 hover:bg-red-700" onClick={() => onDelete(user._id as string)}>
-                  Delete
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
+          {isCurrentUser ? (
+            <Button 
+              variant="ghost" 
+              className="flex-1 rounded-none text-gray-400 cursor-not-allowed" 
+              disabled
+              title="Você não pode excluir sua própria conta"
+            >
+              <Trash2 className="mr-2 h-4 w-4" />
+              Excluir
+            </Button>
+          ) : (
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="ghost" className="flex-1 rounded-none text-red-600 hover:bg-red-50 hover:text-red-700">
+                  <Trash2 className="mr-2 h-4 w-4" />
+                  Excluir
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Excluir Usuário</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Tem certeza que deseja excluir {user.name}? Esta ação não pode ser desfeita.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                  <AlertDialogAction className="bg-red-600 hover:bg-red-700" onClick={() => onDelete(user._id as string)}>
+                    Excluir
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          )}
         </div>
       </CardContent>
     </Card>

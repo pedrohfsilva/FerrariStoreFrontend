@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { useToast } from "@/components/ui/use-toast"
-import { API_URL, authFetchConfig, isAdmin, isAuthenticated } from "@/lib/api"
+import { API_URL, authFetchConfig, isAdmin, isAuthenticated, getCurrentUserId } from "@/lib/api"
 import { IUser } from "@/types/models"
 import { Loader2 } from "lucide-react"
 
@@ -36,13 +36,13 @@ export default function EditUserPage() {
   const router = useRouter()
   const { toast } = useToast()
 
-  // Verify authentication and admin permission
+  // Verifica autenticação e permissão de admin
   useEffect(() => {
     const checkAuth = async () => {
       if (!isAuthenticated()) {
         toast({
-          title: "Authentication required",
-          description: "You must be logged in to access this page",
+          title: "Autenticação necessária",
+          description: "Você deve estar logado para acessar esta página",
           variant: "destructive",
         })
         router.push('/login')
@@ -51,15 +51,15 @@ export default function EditUserPage() {
 
       if (!isAdmin()) {
         toast({
-          title: "Access denied",
-          description: "You don't have permission to access this page",
+          title: "Acesso negado",
+          description: "Você não tem permissão para acessar essa página",
           variant: "destructive",
         })
         router.push('/')
         return
       }
 
-      // After verifying permissions, fetch the user data
+      // Depois de verificar permissão, pegar os dados do usuário
       if (id) {
         fetchUser()
       }
@@ -68,14 +68,14 @@ export default function EditUserPage() {
     checkAuth()
   }, [id, router, toast])
 
-  // Load user data
+  // Carregar os dados do usuário
   const fetchUser = async () => {
     try {
       setIsLoading(true)
       const response = await fetch(`${API_URL}/api/users/${id}`, authFetchConfig())
       
       if (!response.ok) {
-        throw new Error('Failed to fetch user data')
+        throw new Error('Falha ao buscar dados do usuário')
       }
       
       const data = await response.json()
@@ -95,17 +95,17 @@ export default function EditUserPage() {
         setOriginalCpf(user.cpf)
       } else {
         toast({
-          title: "User not found",
-          description: "The user you are trying to edit does not exist",
+          title: "Usuário não encontrado",
+          description: "O usuário que você está tentando editar não existe",
           variant: "destructive",
         })
         router.push("/admin/users")
       }
     } catch (error) {
-      console.error("Error fetching user:", error)
+      console.error("Erro ao buscar usuário:", error)
       toast({
-        title: "Error",
-        description: "Failed to load user data. Please try again.",
+        title: "Erro",
+        description: "Falha ao carregar os dados do usuário. Tente novamente.",
         variant: "destructive",
       })
       router.push("/admin/users")
@@ -118,7 +118,7 @@ export default function EditUserPage() {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
 
-    // Clear errors when typing
+    // Limpa os erros ao digitar
     if (name === "email" || name === "password" || name === "confirmPassword" || name === "cpf") {
       setErrors((prev) => ({ ...prev, [name]: "" }))
     }
@@ -132,30 +132,30 @@ export default function EditUserPage() {
     let valid = true
     const newErrors = { email: "", password: "", confirmPassword: "", cpf: "" }
 
-    // Validate email
+    // Validar email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address"
+      newErrors.email = "Por favor, insira um endereço de e-mail válido"
       valid = false
     }
     
-    // Validate CPF format if it's been changed
+    // Validar o formato do CPF se ele mudou
     if (formData.cpf !== originalCpf) {
       const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/
       if (formData.cpf && !cpfRegex.test(formData.cpf)) {
-        newErrors.cpf = "CPF should be in format: 000.000.000-00"
+        newErrors.cpf = "O CPF deve estar no formato: 000.000.000-00"
         valid = false
       }
     }
 
-    // Only validate password if it's being changed
+    // Só valida a senha se ela foi alterada
     if (formData.password) {
       if (formData.password.length < 8) {
-        newErrors.password = "Password must be at least 8 characters"
+        newErrors.password = "A senha deve ter pelo menos 8 caracteres"
         valid = false
       }
       if (formData.password !== formData.confirmPassword) {
-        newErrors.confirmPassword = "Passwords do not match"
+        newErrors.confirmPassword = "As senhas não correspondem"
         valid = false
       }
     }
@@ -174,7 +174,7 @@ export default function EditUserPage() {
     try {
       setIsLoading(true)
       
-      // Only include password if it was provided
+      // Inclui a senha apenas se ela foi fornecida
       const userData = {
         name: formData.name,
         email: formData.email,
@@ -196,26 +196,26 @@ export default function EditUserPage() {
 
       if (!response.ok) {
         const errorData = await response.json()
-        throw new Error(errorData.message || 'Failed to update user')
+        throw new Error(errorData.message || 'Falha ao atualizar usuário')
       }
 
       toast({
-        title: "User updated",
-        description: `${formData.name}'s information has been updated`,
+        title: "Usuário atualizado",
+        description: `As informações de ${formData.name} foram atualizadas`,
       })
       router.push("/admin/users")
     } catch (error: any) {
-      console.error("Error updating user:", error)
+      console.error("Erro ao atualizar usuário:", error)
       
-      // Handle specific errors
+      // Lida com erros específicos
       if (error.message && error.message.includes("email")) {
-        setErrors(prev => ({ ...prev, email: "This email is already in use" }))
+        setErrors(prev => ({ ...prev, email: "Este e-mail já está em uso" }))
       } else if (error.message && error.message.includes("cpf")) {
-        setErrors(prev => ({ ...prev, cpf: "This CPF is already registered" }))
+        setErrors(prev => ({ ...prev, cpf: "Este CPF já está cadastrado" }))
       } else {
         toast({
-          title: "Error",
-          description: error.message || "Failed to update user. Please try again.",
+          title: "Erro",
+          description: error.message || "Falha ao atualizar usuário. Por favor, tente novamente.",
           variant: "destructive",
         })
       }
@@ -223,6 +223,11 @@ export default function EditUserPage() {
       setIsLoading(false)
     }
   }
+
+  // Verifica se o usuário sendo editado é o próprio administrador logado
+  const currentUserId = getCurrentUserId()
+  const isEditingSelf = id === currentUserId
+  const canChangeAdminStatus = !isEditingSelf
 
   if (isLoading) {
     return (
@@ -234,19 +239,19 @@ export default function EditUserPage() {
 
   return (
     <div>
-      <h1 className="mb-6 text-2xl font-bold">Edit User</h1>
+      <h1 className="mb-6 text-2xl font-bold">Editar Usuário</h1>
       <Card className="mx-auto max-w-2xl">
         <CardHeader>
-          <CardTitle>User Information</CardTitle>
+          <CardTitle>Informações do Usuário</CardTitle>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="name">Full Name</Label>
+              <Label htmlFor="name">Nome Completo</Label>
               <Input id="name" name="name" value={formData.name} onChange={handleInputChange} required />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">E-mail</Label>
               <Input
                 id="email"
                 name="email"
@@ -258,11 +263,11 @@ export default function EditUserPage() {
               {errors.email && <p className="text-xs text-red-600">{errors.email}</p>}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="phone">Phone Number</Label>
+              <Label htmlFor="phone">Número de Telefone</Label>
               <Input id="phone" name="phone" value={formData.phone} onChange={handleInputChange} required />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="cpf">CPF (Brazilian ID)</Label>
+              <Label htmlFor="cpf">CPF (Identidade Brasileira)</Label>
               <Input
                 id="cpf"
                 name="cpf"
@@ -273,7 +278,7 @@ export default function EditUserPage() {
               {errors.cpf && <p className="text-xs text-red-600">{errors.cpf}</p>}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">New Password (leave blank to keep current)</Label>
+              <Label htmlFor="password">Nova Senha (deixe em branco para manter a atual)</Label>
               <Input
                 id="password"
                 name="password"
@@ -284,7 +289,7 @@ export default function EditUserPage() {
               {errors.password && <p className="text-xs text-red-600">{errors.password}</p>}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword">Confirm New Password</Label>
+              <Label htmlFor="confirmPassword">Confirmar Nova Senha</Label>
               <Input
                 id="confirmPassword"
                 name="confirmPassword"
@@ -295,22 +300,30 @@ export default function EditUserPage() {
               {errors.confirmPassword && <p className="text-xs text-red-600">{errors.confirmPassword}</p>}
             </div>
             <div className="flex items-center space-x-2">
-              <Switch id="admin" checked={formData.admin} onCheckedChange={handleSwitchChange} />
-              <Label htmlFor="admin">Admin User</Label>
+              <Switch 
+                id="admin" 
+                checked={formData.admin} 
+                onCheckedChange={handleSwitchChange}
+                disabled={!canChangeAdminStatus}
+              />
+              <Label htmlFor="admin" className={!canChangeAdminStatus ? "text-gray-400" : ""}>
+                Usuário Administrador
+                {!canChangeAdminStatus && <span className="text-xs text-gray-500 block">Você não pode remover seus próprios privilégios de administrador</span>}
+              </Label>
             </div>
           </CardContent>
           <CardFooter className="flex justify-between">
             <Button type="button" variant="outline" onClick={() => router.back()}>
-              Cancel
+              Cancelar
             </Button>
             <Button type="submit" className="bg-red-600 hover:bg-red-700" disabled={isLoading}>
               {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Updating...
+                  Atualizando...
                 </>
               ) : (
-                "Update User"
+                "Atualizar Usuário"
               )}
             </Button>
           </CardFooter>

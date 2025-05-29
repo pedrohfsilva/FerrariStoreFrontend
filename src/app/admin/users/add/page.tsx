@@ -35,13 +35,13 @@ export default function AddUserPage() {
   const router = useRouter()
   const { toast } = useToast()
   
-  // Check authentication and admin rights
+  // Verifica autenticação e permissões de administrador
   useEffect(() => {
     const checkAuth = async () => {
       if (!isAuthenticated()) {
         toast({
-          title: "Authentication required",
-          description: "You must be logged in to access this page",
+          title: "Autenticação necessária",
+          description: "Você precisa estar logado para acessar esta página",
           variant: "destructive",
         })
         router.push('/login')
@@ -50,8 +50,8 @@ export default function AddUserPage() {
 
       if (!isAdmin()) {
         toast({
-          title: "Access denied",
-          description: "You don't have permission to access this page",
+          title: "Acesso negado",
+          description: "Você não tem permissão para acessar esta página",
           variant: "destructive",
         })
         router.push('/')
@@ -65,7 +65,7 @@ export default function AddUserPage() {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
 
-    // Clear errors when typing
+    // Limpa os erros ao digitar
     if (name === "email" || name === "password" || name === "confirmPassword" || name === "cpf") {
       setErrors((prev) => ({ ...prev, [name]: "" }))
     }
@@ -79,29 +79,29 @@ export default function AddUserPage() {
     let valid = true
     const newErrors = { email: "", password: "", confirmPassword: "", cpf: "" }
 
-    // Validate email
+    // Valida o e-mail
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address"
+      newErrors.email = "Por favor, insira um endereço de e-mail válido"
       valid = false
     }
 
-    // Validate password
-    if (formData.password.length < 6) { // Changed to 6 to match backend validation
-      newErrors.password = "Password must be at least 6 characters"
+    // Valida a senha
+    if (formData.password.length < 6) { // Alterado para 6 para corresponder à validação do backend
+      newErrors.password = "A senha deve ter pelo menos 6 caracteres"
       valid = false
     }
 
-    // Validate password confirmation
+    // Valida a confirmação da senha
     if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match"
+      newErrors.confirmPassword = "As senhas não correspondem"
       valid = false
     }
     
-    // Validate CPF (Brazilian ID) - simple format validation
+    // Valida o CPF (Documento de Identidade Brasileiro) - validação de formato simples
     const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/
     if (formData.cpf && !cpfRegex.test(formData.cpf)) {
-      newErrors.cpf = "CPF should be in format: 000.000.000-00"
+      newErrors.cpf = "O CPF deve estar no formato: 000.000.000-00"
       valid = false
     }
 
@@ -119,7 +119,7 @@ export default function AddUserPage() {
     try {
       setIsLoading(true)
       
-      // Only send the necessary user data fields
+      // Envia apenas os campos necessários do usuário
       const userData = {
         name: formData.name,
         email: formData.email,
@@ -130,7 +130,7 @@ export default function AddUserPage() {
         admin: formData.admin
       }
 
-      // Use API_ENDPOINTS.register and the authFetchConfig helper
+      // Usa API_ENDPOINTS.register e a função auxiliar authFetchConfig
       const response = await fetch(API_ENDPOINTS.register, {
         method: 'POST',
         headers: {
@@ -142,27 +142,27 @@ export default function AddUserPage() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to create user');
+        throw new Error(errorData.message || 'Falha ao criar usuário');
       }
 
       toast({
-        title: "User created",
-        description: `${formData.name} has been added successfully`,
+        title: "Usuário criado",
+        description: `${formData.name} foi adicionado com sucesso`,
       });
 
       router.push("/admin/users");
     } catch (error: any) {
-      console.error("Error creating user:", error);
+      console.error("Erro ao criar usuário:", error);
       
-      // Handle common errors
+      // Lida com erros comuns
       if (error.message && error.message.includes("email")) {
-        setErrors(prev => ({ ...prev, email: "This email is already in use" }));
+        setErrors(prev => ({ ...prev, email: "Este e-mail já está em uso" }));
       } else if (error.message && error.message.includes("cpf")) {
-        setErrors(prev => ({ ...prev, cpf: "This CPF is already registered" }));
+        setErrors(prev => ({ ...prev, cpf: "Este CPF já está cadastrado" }));
       } else {
         toast({
-          title: "Error",
-          description: error.message || "Failed to create user. Please try again.",
+          title: "Erro",
+          description: error.message || "Falha ao criar usuário. Por favor, tente novamente.",
           variant: "destructive",
         });
       }
@@ -173,21 +173,21 @@ export default function AddUserPage() {
 
   return (
     <div>
-      <h1 className="mb-6 text-2xl font-bold">Add New User</h1>
+      <h1 className="mb-6 text-2xl font-bold">Adicionar Novo Usuário</h1>
 
       <Card className="mx-auto max-w-2xl">
         <CardHeader>
-          <CardTitle>User Information</CardTitle>
+          <CardTitle>Informações do Usuário</CardTitle>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="name">Full Name</Label>
+              <Label htmlFor="name">Nome Completo</Label>
               <Input id="name" name="name" value={formData.name} onChange={handleInputChange} required />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">E-mail</Label>
               <Input
                 id="email"
                 name="email"
@@ -200,12 +200,12 @@ export default function AddUserPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="phone">Phone Number</Label>
+              <Label htmlFor="phone">Número de Telefone</Label>
               <Input id="phone" name="phone" value={formData.phone} onChange={handleInputChange} required />
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="cpf">CPF (Brazilian ID)</Label>
+              <Label htmlFor="cpf">CPF (Identidade Brasileira)</Label>
               <Input 
                 id="cpf" 
                 name="cpf" 
@@ -218,7 +218,7 @@ export default function AddUserPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">Senha</Label>
               <Input
                 id="password"
                 name="password"
@@ -231,7 +231,7 @@ export default function AddUserPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword">Confirm Password</Label>
+              <Label htmlFor="confirmPassword">Confirmar Senha</Label>
               <Input
                 id="confirmPassword"
                 name="confirmPassword"
@@ -245,21 +245,21 @@ export default function AddUserPage() {
 
             <div className="flex items-center space-x-2">
               <Switch id="admin" checked={formData.admin} onCheckedChange={handleSwitchChange} />
-              <Label htmlFor="admin">Admin User</Label>
+              <Label htmlFor="admin">Usuário Administrador</Label>
             </div>
           </CardContent>
           <CardFooter className="flex justify-between">
             <Button type="button" variant="outline" onClick={() => router.back()}>
-              Cancel
+              Cancelar
             </Button>
             <Button type="submit" className="bg-red-600 hover:bg-red-700" disabled={isLoading}>
               {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Creating...
+                  Criando...
                 </>
               ) : (
-                "Create User"
+                "Criar Usuário"
               )}
             </Button>
           </CardFooter>
