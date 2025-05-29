@@ -6,7 +6,7 @@ export default function AddProductPage() {
   return (
     <div>
       <h1 className="mb-6 text-2xl font-bold">Adicione Novo Produto</h1>
-      <ProductForm title="Add New Product" />
+      <ProductForm title="Adicionar Novo Produto" />
     </div>
   )
 }
