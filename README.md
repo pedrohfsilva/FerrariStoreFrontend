@@ -111,12 +111,33 @@ npm run dev
 
 # For reviwers 
 
-You can create your own account to thest the user features.
+You can create your own account to test the user features.
 
-Use the following admin credentials to test admin features:
+## Admin Access Setup
 
-- Login: admin@gmail.com
-- Password: admin123
+To test the **admin features** of the platform, follow the steps below:
+
+1. **Create an account** and **log in** to the platform.
+
+2. Go to [MongoDB Atlas](https://www.mongodb.com/products/platform/atlas-database).
+
+3. In the MongoDB Atlas dashboard:
+
+   * Click on **"Clusters"**.
+   * Click on **"Browse Collections"**.
+
+4. In the **`test`** database:
+
+   * Open the **`users`** collection.
+   * Find your user document.
+   * Change the value of the `admin` attribute to `true`.
+
+5. Return to the platform:
+
+   * Click the **Logout** button.
+   * Log in again.
+
+Now your user has **admin privileges**, and you can access the **admin page**.
 
 # Navigation Diagram
 
