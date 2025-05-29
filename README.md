@@ -34,13 +34,13 @@ In the root directory of the project, open **two separate terminals**:
 * In Terminal 1:
 
   ```bash
-  cd FerrariStore/final-version/frontend
+  cd final-version/frontend
   ```
 
 * In Terminal 2:
 
   ```bash
-  cd FerrariStore/final-version/backend
+  cd final-version/backend
   ```
 
 ---
