@@ -157,17 +157,19 @@ All website pages feature **fully responsive design**, ensuring an optimized use
 
 ### Comments about the code
 
+### Test Plan and Test Results
 
+#### User (Client) login and registration
+The registration process was tested by simulating the completion of all mandatory fields—such as full name, a valid email address, password, and password confirmation—with valid information that complies with the presumably established validation criteria. The registration of new users was successfully completed. The system effectively validated the input data, displayed clear and helpful guidance messages during the process, and the user account was created without any issues. After creation, the user was appropriately redirected, either to the login page for immediate authentication or to a user dashboard.
 
-### Test Plan
+#### Administrator account
+An administrator account can only be created by another administrator or through a manual change in the database. We attempted to allow an administrator to delete their own account; however, the system does not permit this action. Furthermore, we created several products through the administrator account and also changed their stock values, which worked perfectly as expected. The only thing to note during our tests is that if an administrator promotes another user to an administrator while that user is logged in, they will have to log out and log back in for the administration area to appear in the header.
 
+#### Product Sale
+We tested adding products to the cart in several ways, including entering the product page and adding it to the cart, clicking to add it to the cart from outside the product page, and also, once in the cart, increasing and decreasing the quantity of products. In all cases, it was never possible to exceed the maximum number of products in stock. Additionally, when finalizing the purchase, if the user had not added a credit card and/or address, they were required to go to their profile page and register this information. Upon completing the purchase, the purchased products were duly removed from the stock.
 
-### Test Results
-
-### Problems
+#### The group's functionality
+We tested both the addition of audio files and their playback by the user. Both cases worked perfectly. When a user listens to the audio, they do not need to wait for it to finish, as they are able to pause the audio in the middle.
 
 ### Comments
-
-
-
-
+For convenience, we implemented the backend during the second milestone, so it wasn't necessary to use the suggested mockup tools.
