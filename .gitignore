@@ -39,19 +39,19 @@ Thumbs.db
 # Optional: Typescript cache
 *.tsbuildinfo
 
-# Ignorar imagens e áudios apenas em final-version/backend/public
-/final-version/backend/public/*.png
-/final-version/backend/public/*.jpg
-/final-version/backend/public/*.jpeg
-/final-version/backend/public/*.gif
-/final-version/backend/public/*.svg
-/final-version/backend/public/*.webp
-/final-version/backend/public/*.ico
-/final-version/backend/public/*.bmp
-/final-version/backend/public/*.tiff
-/final-version/backend/public/*.mp3
-/final-version/backend/public/*.wav
-/final-version/backend/public/*.ogg
-/final-version/backend/public/*.m4a
-/final-version/backend/public/*.flac
-/final-version/backend/public/*.aac
+# Ignorar imagens e áudios na pasta final-version/backend/public
+/final-version/backend/public/**/*.png
+/final-version/backend/public/**/*.jpg
+/final-version/backend/public/**/*.jpeg
+/final-version/backend/public/**/*.gif
+/final-version/backend/public/**/*.svg
+/final-version/backend/public/**/*.webp
+/final-version/backend/public/**/*.ico
+/final-version/backend/public/**/*.bmp
+/final-version/backend/public/**/*.tiff
+/final-version/backend/public/**/*.mp3
+/final-version/backend/public/**/*.wav
+/final-version/backend/public/**/*.ogg
+/final-version/backend/public/**/*.m4a
+/final-version/backend/public/**/*.flac
+/final-version/backend/public/**/*.aac
