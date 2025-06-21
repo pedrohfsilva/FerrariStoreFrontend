@@ -143,14 +143,18 @@ export default function ProductForm({ title, editMode = false, productId }: Prod
   const handleSoundFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
-      // Validar tipo de arquivo
-      const allowedTypes = ['audio/mp3', 'audio/wav', 'audio/ogg', 'audio/mp4', 'audio/mpeg']
+      // Validar tipo de arquivo por MIME type (mais confiável)
+      const allowedTypes = ['audio/mp3', 'audio/mpeg', 'audio/wav', 'audio/ogg', 'audio/mp4']
       if (!allowedTypes.includes(file.type)) {
         toast({
           title: "Formato inválido",
           description: "Por favor, envie apenas arquivos MP3, WAV, OGG ou M4A",
           variant: "destructive",
         })
+        // Limpar o input
+        if (soundInputRef.current) {
+          soundInputRef.current.value = ""
+        }
         return
       }
       
@@ -162,6 +166,10 @@ export default function ProductForm({ title, editMode = false, productId }: Prod
           description: "O arquivo de áudio deve ter no máximo 5MB",
           variant: "destructive",
         })
+        // Limpar o input
+        if (soundInputRef.current) {
+          soundInputRef.current.value = ""
+        }
         return
       }
       
@@ -173,10 +181,66 @@ export default function ProductForm({ title, editMode = false, productId }: Prod
     const files = e.target.files
     if (!files || files.length === 0) return
 
+    // Validar tipos de arquivo
+    const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg']
+    const invalidFiles: string[] = []
+    const validFiles: File[] = []
+
+    Array.from(files).forEach(file => {
+      if (!allowedTypes.includes(file.type)) {
+        invalidFiles.push(file.name)
+      } else {
+        validFiles.push(file)
+      }
+    })
+
+    // Mostrar erro para arquivos inválidos
+    if (invalidFiles.length > 0) {
+      toast({
+        title: "Formato inválido",
+        description: `Os seguintes arquivos não são suportados: ${invalidFiles.join(', ')}. Use apenas PNG, JPG ou JPEG.`,
+        variant: "destructive",
+      })
+    }
+
+    // Se não há arquivos válidos, pare aqui
+    if (validFiles.length === 0) {
+      if (fileInputRef.current) fileInputRef.current.value = ""
+      return
+    }
+
+    // Validar tamanho dos arquivos (máximo 5MB por imagem)
+    const maxSize = 5 * 1024 * 1024 // 5MB
+    const oversizedFiles: string[] = []
+    const sizeValidFiles: File[] = []
+
+    validFiles.forEach(file => {
+      if (file.size > maxSize) {
+        oversizedFiles.push(file.name)
+      } else {
+        sizeValidFiles.push(file)
+      }
+    })
+
+    // Mostrar erro para arquivos muito grandes
+    if (oversizedFiles.length > 0) {
+      toast({
+        title: "Arquivo muito grande",
+        description: `Os seguintes arquivos excedem 5MB: ${oversizedFiles.join(', ')}`,
+        variant: "destructive",
+      })
+    }
+
+    // Se não há arquivos válidos após validação de tamanho, pare aqui
+    if (sizeValidFiles.length === 0) {
+      if (fileInputRef.current) fileInputRef.current.value = ""
+      return
+    }
+
     // Limitar a 3 imagens no total (incluindo as existentes)
     const totalExistingImages = editMode ? existingImages.length - imagesToDelete.length : 0
     const remainingSlots = 3 - totalExistingImages - imageFiles.length
-    const newFiles = Array.from(files).slice(0, remainingSlots)
+    const newFiles = sizeValidFiles.slice(0, remainingSlots)
 
     // Adicionar novos arquivos ao estado
     setImageFiles((prev) => [...prev, ...newFiles])
@@ -500,7 +564,7 @@ export default function ProductForm({ title, editMode = false, productId }: Prod
                   ref={fileInputRef}
                   id="product-images"
                   type="file"
-                  accept="image/png,image/jpeg,image/jpg"
+                  accept="image/png,image/jpeg,image/jpg,.png,.jpg,.jpeg"
                   onChange={handleImageChange}
                   multiple={true}
                   className="mb-2"
